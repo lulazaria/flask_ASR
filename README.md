@@ -1,6 +1,5 @@
 # Flask backed Web Interface for pre-trained ASR model with kaldi
- 
-### This is a simple web interface with a Flask backend for a pre-trained ASR model
+This is a simple web interface with a Flask backend for a pre-trained ASR model.
 ## Install Requirements
 
 ### Pip
