@@ -17,7 +17,8 @@ wget http://dl.kaldi-asr.org/models/0001_aspire_chain_model.tar.gz
 tar xfv 0001_aspire_chain_model.tar.gz
 git clone flask_ASR
 ~~~
-##Usage
+## Usage
+
 Start the server 
 ```python 
 python server.py
