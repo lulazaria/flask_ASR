@@ -15,15 +15,17 @@ git clone https://github.com/kaldi-asr/kaldi
 cd kaldi/egs/aspire/s5
 wget http://dl.kaldi-asr.org/models/0001_aspire_chain_model.tar.gz
 tar xfv 0001_aspire_chain_model.tar.gz
-git clone flask_ASR
 ~~~
+clone this repository and copy contents to <kaldi-folder>/egs/aspire/s5
+
 ## Usage
 
 Start the server 
 ```python 
 python server.py
 ```
-Go to your web browser start a client with localhost:5000
+Go to your web browser and start a client with http://localhost:5000
+
 
 
  

@@ -2,22 +2,29 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import os
 
-UPLOAD_FOLDER = './am'
+
 ALLOWED_EXTENSIONS = set(['mp3', 'wav'])
 
 app = Flask(__name__)
 
 def transcribe(name):
-    conv = "ffmpeg -i ./eng/%s -acodec pcm_s16le -ac 1 -ar 8000 temp.wav " % name
+    conv = "./preprocesser.sh %s" % name
     os.system(conv)
-    shell = "./test.sh x.wav"
+    os.system("pwd > pwd.txt")
+    pwd = open("pwd.txt","r")
+    path = pwd.read()
+    path = path.replace("\n","")
+    path = path.split("/egs/aspire/s5")
+    
+    shell = "./transcribe.sh %s temp.wav" % path[0]
     os.system(shell)
     os.system("./lat.sh")
-    os.system("./final.sh >test.txt")
+    out = "./output.sh %s >transcription.txt" % path
+    os.system("./output.sh >transcription.txt")
     os.system("rm temp.wav")
-    with open('test.txt', 'r') as myfile:
+    with open('transcription.txt', 'r') as myfile:
         data = myfile.read().replace('\n', '')
-
+    
     return data
 
 
@@ -63,7 +70,8 @@ def eng_trans():
             transcription = transcribe(file.filename)
 
             return transcription
-
+	else:
+		return "Not a valid format"
 
 @app.route("/am/trans", methods=['GET', 'POST'])
 def am_trans():
@@ -79,10 +87,12 @@ def am_trans():
             UPLOAD_FOLDER = './am'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
+            file.truncate()
             transcription = "Transcription not available yet"
 
             return transcription
+	else:
+		return "Not a valid format"
 
 
 if __name__ == "__main__":
