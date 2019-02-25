@@ -25,7 +25,7 @@ Start the server
 python server.py
 ```
 Go to your web browser and start a client with http://localhost:5000
-##Docker
+## Docker
 
 Build the image with
 ~~~
