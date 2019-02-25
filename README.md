@@ -15,7 +15,7 @@ cd kaldi/egs/aspire/s5
 wget http://dl.kaldi-asr.org/models/0001_aspire_chain_model.tar.gz
 tar xfv 0001_aspire_chain_model.tar.gz
 ~~~
-clone this repository and copy contents to <kaldi-folder>/egs/aspire/s5
+copy contents of this repository to kaldi-folder/egs/aspire/s5
 
 ### Usage
 
